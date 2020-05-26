@@ -27,9 +27,13 @@ var navbarList= document.querySelector('#navbar__list');
 //We can also start the navbar menu to update the style of the navbar menu
 var navbarMenu= document.querySelector('.navbar__menu');
 
+var navNames = document.getElementsByClassName('menu__link');
+
+
 //To store the location of the sections
-var sectionLocs = [];
-var active = 0; //Keeps track of the active section
+let sectionLocs = [];
+//let sectionLocsHeight = [];
+let active = 0; //Keeps track of the active section
 
 
 /*Create navigation bar items*/
@@ -70,6 +74,7 @@ function addSectionNames() {
 
     navbarList.appendChild(menuOptions); // Add the document fragmentation to the navBar to reflow and repaint once.
     
+    //Store the list of the menus
 }
 
 function styleNavbar() {
@@ -80,7 +85,7 @@ function styleNavbar() {
     navbarList.style.alignItems = 'flex-start';
     navbarList.style.justifyContent = 'center';
     //navbarList.style.height ="80px"
-
+    navNames[0].classList.add("active-menu");
 }
 
 function styleNavmenu(){
@@ -101,7 +106,10 @@ function sectionLocations(){
     sectionLocs[0]=0;
     for (let i=0; i<sectionNames.length; i++) {
         sectionLocs[i+1] = sectionNames[i].offsetTop;
+        //sectionLocsHeight[i] = sectionNames[i].offsetHeight;
     }
+    console.log(sectionLocs)
+    //console.log(sectionLocsHeight);
 }
 
 /**
@@ -131,7 +139,8 @@ function navigationFunction(e){
     //Get the section of the document via query selector
 
     window.scrollTo({
-        top: targetSection.offsetTop, //This computes the location of the top and scrolls over to the section
+        top: targetSection.offsetTop-52, //This computes the location of the top and scrolls over to the section
+        //Use 100 for the navbar offset
         behavior: 'smooth'
     });
 }
@@ -151,12 +160,18 @@ function scrollFunction() {
         active=active+1
         sectionNames[active].classList.add("your-active-class");
         sectionNames[active-1].classList.remove("your-active-class");
+        
+        navNames[active].classList.add("active-menu");
+        navNames[active-1].classList.remove("active-menu");
     }
     // Also handle when we go back to a previous section.
-    if (sectionLocs[active]>window.scrollY){
+    if (sectionLocs[active+1]>window.scrollY){
         active=active-1
         sectionNames[active].classList.add("your-active-class");
         sectionNames[active+1].classList.remove("your-active-class");
+
+        navNames[active].classList.add("active-menu");
+        navNames[active+1].classList.remove("active-menu");
     }
 
      
@@ -164,7 +179,8 @@ function scrollFunction() {
     if (sectionLocs[active]<=window.scrollY && sectionLocs[active+1]>window.scrollY){
         console.log("In section "+active)
         console.log("WINDOW "+window.scrollY);
-        console.log("SECTION1 "+sectionLocs[active])
+        console.log("active section location "+sectionLocs[active])
+        console.log("active section +2 location "+sectionLocs[active+2])
         //console.log("SECTION1 "+document.querySelector('#section1').offsetTop);
     }
     
