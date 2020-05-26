@@ -140,7 +140,7 @@ function addScrollEffects(){
     window.addEventListener("scroll",scrollFunction);
 }
 
-function scrollFunction(e) {
+function scrollFunction() {
     //console.log(document.querySelector('body').offsetTop);
     
     //Change active section depending on where the scroll is
