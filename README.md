@@ -3,9 +3,9 @@
 ## Table of Contents
 
 * [Introduction](#Introduction)
-* [Navigation Menu](#Navigation_Menu)
-* [Event Listener 1](#Event_Listener1:_Click_Event_for_Scrolling)
-* [Event Listener 2](#Event_Listerner2:_Scrolling_and_active_section_display)
+* [Navigation Menu](#navigation-menu)
+* [Event Listener 1](#event-listener1-click-event-for-scrolling)
+* [Event Listener 2](#event-listerner2-scrolling-and-active-section-display)
 
 ## Introduction
 
